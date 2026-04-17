@@ -2018,7 +2018,118 @@
   }
   .v2-link-btn:hover{color:var(--text2)}
 
-  /* Scroll-reveal animation */
+  /* ── HUD ── */
+  .v2-hud{
+    position:sticky;top:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 20px;
+    background:rgba(0,0,0,.95);backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(255,255,255,.07);
+  }
+  .v2-hud-right{display:flex;align-items:center;gap:10px}
+  .v2-hud-count{
+    font-family:'DM Serif Display',serif;font-size:1rem;color:var(--amber);
+    font-weight:700;white-space:nowrap;
+  }
+  .v2-hud-bar{
+    width:80px;height:5px;background:rgba(255,255,255,.08);
+    border-radius:10px;overflow:hidden;
+  }
+  .v2-hud-fill{
+    height:100%;width:0%;
+    background:linear-gradient(90deg,var(--amber),#ffce6a);
+    border-radius:10px;
+    transition:width .8s cubic-bezier(.22,.68,0,1.2);
+  }
+  .v2-hud-label{font-size:.65rem;color:var(--text3);font-weight:600;letter-spacing:.06em}
+
+  /* ── Achievement toast ── */
+  .v2-ach-slot{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+    z-index:200;pointer-events:none;
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+  }
+  .v2-ach{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(20,20,20,.95);border:1px solid rgba(255,255,255,.12);
+    border-radius:40px;padding:10px 20px;
+    font-size:.82rem;font-weight:700;color:#fff;
+    box-shadow:0 8px 32px rgba(0,0,0,.6);
+    animation:achIn .4s cubic-bezier(.22,.68,0,1.2) both;
+    backdrop-filter:blur(20px);
+  }
+  .v2-ach.out{animation:achOut .35s ease forwards}
+  .v2-ach-icon{font-size:1rem}
+  .v2-ach-text{color:#fff}
+  .v2-ach-sub{color:var(--text3);font-weight:500;font-size:.75rem}
+  @keyframes achIn{from{opacity:0;transform:translateY(16px) scale(.9)}to{opacity:1;transform:none scale(1)}}
+  @keyframes achOut{to{opacity:0;transform:translateY(-12px) scale(.95)}}
+
+  /* ── Game Cards ── */
+  .v2-gcard{
+    background:var(--s1);border:1px solid var(--border);
+    border-radius:20px;padding:24px;margin-bottom:14px;
+    opacity:0;transform:translateY(28px);
+    transition:opacity .55s ease,transform .55s cubic-bezier(.22,.68,0,1.2);
+  }
+  .v2-gcard.visible{opacity:1;transform:none}
+  .v2-gcard.amber{border-color:rgba(245,166,35,.2);background:rgba(245,166,35,.04)}
+  .v2-gcard.red{border-color:rgba(255,69,58,.18);background:rgba(255,69,58,.04)}
+  .v2-gcard-badge{
+    display:inline-flex;align-items:center;gap:6px;
+    border-radius:40px;padding:5px 14px;
+    font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .v2-gcard-badge.free{background:rgba(48,209,88,.1);border:1px solid rgba(48,209,88,.22);color:var(--green)}
+  .v2-gcard-badge.amber{background:rgba(245,166,35,.12);border:1px solid rgba(245,166,35,.25);color:var(--amber)}
+  .v2-gcard-badge.red{background:rgba(255,69,58,.1);border:1px solid rgba(255,69,58,.22);color:var(--red)}
+  .v2-gcard-label{
+    font-family:'DM Serif Display',serif;font-size:1.05rem;
+    color:#fff;margin-bottom:12px;font-weight:700;
+  }
+  .v2-gcard-body{font-size:.93rem;color:var(--text2);line-height:1.72}
+  .v2-gcard-body p{margin:0 0 10px}
+  .v2-gcard-body p:last-child{margin-bottom:0}
+  .v2-gcard-body strong{color:#fff;font-weight:600}
+
+  /* ── Map divider ── */
+  .v2-map-divider{
+    display:flex;align-items:center;gap:14px;
+    margin:32px 0 24px;
+    opacity:0;transform:translateY(20px);
+    transition:opacity .5s ease,transform .5s ease;
+  }
+  .v2-map-divider.visible{opacity:1;transform:none}
+  .v2-map-div-line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(245,166,35,.25),transparent)}
+  .v2-map-div-badge{
+    font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--amber);white-space:nowrap;
+  }
+
+  /* ── Locked cards overrides ── */
+  .v2-locked-cards{
+    display:flex;flex-direction:column;gap:10px;margin-bottom:14px;
+    opacity:0;transform:translateY(24px);
+    transition:opacity .55s ease,transform .55s ease;
+  }
+  .v2-locked-cards.visible{opacity:1;transform:none}
+
+  /* ── Advanced teaser override ── */
+  .v2-advanced-teaser{
+    opacity:0;transform:translateY(20px);
+    transition:opacity .5s ease,transform .5s ease;
+  }
+  .v2-advanced-teaser.visible{opacity:1;transform:none}
+
+  /* ── Taste & CTA reveal ── */
+  .v2-taste-box,.v2-cta-section{
+    opacity:0;transform:translateY(24px);
+    transition:opacity .55s ease,transform .55s ease;
+  }
+  .v2-taste-box.visible,.v2-cta-section.visible{opacity:1;transform:none}
+
+  /* Scroll-reveal (legacy, kept for other screens) */
   .v2-sr{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
   .v2-sr.visible{opacity:1;transform:none}
   .v2-sr-delay1{transition-delay:.1s}
@@ -2205,110 +2316,87 @@
 </div>
 
 <!-- ═══════════════════════════════════
-     TELA 4 — TEASER (AIDA)
+     TELA 4 — TEASER (GAMIFICADO)
 ═══════════════════════════════════ -->
 <div id="v2Teaser" class="v2-screen v2-hidden">
 
-  <!-- Navbar mínima -->
-  <div class="v2-teaser-nav">
+  <!-- HUD sticky -->
+  <div class="v2-hud">
     <span class="v2-nav-logo">Seu <span>Numerólogo</span></span>
-    <div class="v2-teaser-nav-badge">Mapa calculado</div>
+    <div class="v2-hud-right">
+      <span class="v2-hud-count"><span id="v2HudUnlocked">0</span>/12</span>
+      <div class="v2-hud-bar"><div class="v2-hud-fill" id="v2HudFill"></div></div>
+      <span class="v2-hud-label">reveladas</span>
+    </div>
   </div>
 
-  <!-- Step progress tabs -->
-  <div class="v2-teaser-steps" id="v2Steps">
-    <div class="v2-step-item active" data-step="0">
-      <div class="v2-step-dot">1</div>
-      <span>Revelação</span>
-    </div>
-    <div class="v2-step-item" data-step="1">
-      <div class="v2-step-dot">2</div>
-      <span>Seu Perfil</span>
-    </div>
-    <div class="v2-step-item" data-step="2">
-      <div class="v2-step-dot">3</div>
-      <span>Seu Mapa</span>
-    </div>
-    <div class="v2-step-item" data-step="3">
-      <div class="v2-step-dot">4</div>
-      <span>Desbloquear</span>
-    </div>
-  </div>
+  <!-- Achievement toast (populated by JS) -->
+  <div id="v2AchSlot" class="v2-ach-slot"></div>
 
   <div class="v2-teaser-wrap">
 
-    <!-- ── A: ATENÇÃO — Número revelado ── -->
-    <div class="v2-reveal-hero v2-sr" id="v2StepSec0">
+    <!-- Bloco 1: Número -->
+    <div class="v2-reveal-hero" id="v2PhaseReveal">
       <div class="v2-reveal-kicker">Seu Caminho de Vida</div>
-      <div class="v2-reveal-big" id="v2TeaserNum">7</div>
-      <div class="v2-reveal-name" id="v2TeaserTitle">O Analista</div>
-      <div class="v2-reveal-hook" id="v2TeaserHook">Você tem uma frequência rara — a de quem precisa entender antes de confiar.</div>
+      <div class="v2-reveal-big" id="v2TeaserNum">0</div>
+      <div class="v2-reveal-name" id="v2TeaserTitle"></div>
+      <div class="v2-reveal-hook" id="v2TeaserHook"></div>
     </div>
 
-    <div class="v2-section-divider">✦</div>
-
-    <!-- ── I: INTERESSE — Conteúdo real gratuito ── -->
-    <div class="v2-free-content v2-sr v2-sr-delay1" id="v2StepSec1">
-      <div class="v2-free-badge">Revelado gratuitamente</div>
-
-      <!-- insight pages populated by JS -->
-      <div id="v2FreeInsight"></div>
-
-      <div class="v2-pattern-box v2-sr v2-sr-delay2">
-        <div class="v2-pattern-label">⚡ Seu padrão principal identificado</div>
-        <div class="v2-pattern-text" id="v2PatternText"></div>
-      </div>
-
-      <div class="v2-sabotage-reveal v2-sr v2-sr-delay3">
-        <div class="v2-sabotage-label">O ciclo que você repete sem perceber</div>
-        <div class="v2-sabotage-text" id="v2SabotageText"></div>
-      </div>
+    <!-- Bloco 2: Frequência (gratuito) -->
+    <div class="v2-gcard" id="v2CardInsight">
+      <div class="v2-gcard-badge free">✓ Gratuito · Revelado agora</div>
+      <div class="v2-gcard-label">Sua Frequência</div>
+      <div class="v2-gcard-body" id="v2FreeInsight"></div>
     </div>
 
-    <div class="v2-section-divider">◈</div>
-
-    <!-- ── D: DESEJO — Preview real com números calculados bloqueados ── -->
-    <div class="v2-desire-section v2-sr" id="v2StepSec2">
-      <div class="v2-desire-intro">
-        <div class="v2-desire-kicker">Calculado · aguardando desbloqueio</div>
-        <h3 class="v2-desire-h">Seu mapa tem mais <span id="v2MoreNums">8</span> análises prontas</h3>
-        <p class="v2-desire-sub">Calculamos tudo. Seus números estão aqui — mas as leituras ficam bloqueadas até você desbloquear.</p>
-      </div>
-
-      <!-- Cards dos números calculados (reais) mas leituras bloqueadas -->
-      <div class="v2-locked-cards" id="v2LockedCards"></div>
-
-      <!-- Teaser das análises avançadas -->
-      <div class="v2-advanced-teaser v2-sr v2-sr-delay1">
-        <div class="v2-adv-title">Análises avançadas calculadas e bloqueadas:</div>
-        <div class="v2-adv-grid" id="v2AdvGrid"></div>
-      </div>
+    <!-- Bloco 3: Padrão -->
+    <div class="v2-gcard amber" id="v2CardPattern">
+      <div class="v2-gcard-badge amber">⚡ Padrão identificado</div>
+      <div class="v2-gcard-label">Seu padrão principal</div>
+      <div class="v2-gcard-body" id="v2PatternText"></div>
     </div>
 
-    <!-- Gostinho do que vem: uma frase do plano de ação parcial -->
-    <div class="v2-taste-box v2-sr" id="v2TasteBox"></div>
+    <!-- Bloco 4: Sabotagem -->
+    <div class="v2-gcard red" id="v2CardSabotage">
+      <div class="v2-gcard-badge red">↺ Ciclo mapeado</div>
+      <div class="v2-gcard-label">O ciclo que você repete</div>
+      <div class="v2-gcard-body" id="v2SabotageText"></div>
+    </div>
 
-    <div class="v2-section-divider">◇</div>
+    <!-- Divisor do mapa -->
+    <div class="v2-map-divider" id="v2MapDivider">
+      <div class="v2-map-div-line"></div>
+      <div class="v2-map-div-badge">🗺️ Mapa Numerológico · Calculado</div>
+      <div class="v2-map-div-line"></div>
+    </div>
 
-    <!-- ── A: AÇÃO — CTA de compra ── -->
-    <div class="v2-cta-section v2-sr" id="v2StepSec3">
+    <!-- Bloco 5: Cards bloqueados -->
+    <div class="v2-locked-cards" id="v2LockedCards"></div>
 
+    <!-- Bloco 6: Grid análises avançadas -->
+    <div class="v2-advanced-teaser" id="v2AdvancedTeaser">
+      <div class="v2-adv-title">Análises adicionais calculadas · aguardando desbloqueio</div>
+      <div class="v2-adv-grid" id="v2AdvGrid"></div>
+    </div>
+
+    <!-- Taste -->
+    <div class="v2-taste-box" id="v2TasteBox"></div>
+
+    <!-- CTA -->
+    <div class="v2-cta-section" id="v2StepSec3">
       <div class="v2-social-strip">
         <div class="v2-unlock-avatars">
-          <div class="v2-avatar">M</div>
-          <div class="v2-avatar">R</div>
-          <div class="v2-avatar">C</div>
-          <div class="v2-avatar">A</div>
+          <div class="v2-avatar">M</div><div class="v2-avatar">R</div>
+          <div class="v2-avatar">C</div><div class="v2-avatar">A</div>
           <div class="v2-avatar">+</div>
         </div>
-        <span id="v2SocialProof">1.247 pessoas desbloquearam o mapa esta semana</span>
+        <span>1.247 pessoas desbloquearam esta semana</span>
       </div>
-
       <div class="v2-cta-card">
         <div class="v2-cta-offer-badge">🔓 Acesso Completo</div>
         <h2 class="v2-cta-h">Desbloqueie tudo que já calculamos para você</h2>
         <p class="v2-cta-sub">Seu mapa completo está pronto. Com um clique você acessa todas as <strong>12 análises personalizadas</strong>, seus padrões de sabotagem nomeados, seus 4 Pináculos com os períodos exatos e o Plano de Ação real do seu número.</p>
-
         <div class="v2-cta-features">
           <div class="v2-ctaf">✦ Expressão, Alma e Personalidade com leitura completa</div>
           <div class="v2-ctaf">✦ Padrões de autossabotagem do seu número</div>
@@ -2317,32 +2405,26 @@
           <div class="v2-ctaf">✦ Plano de ação: o que parar, começar e manter</div>
           <div class="v2-ctaf">✦ PDF completo para baixar e guardar</div>
         </div>
-
         <div class="v2-cta-price">
           <div class="v2-price-strike">De R$ 97</div>
           <div class="v2-price-value">R$ <span class="v2-price-big">47</span></div>
           <div class="v2-price-note">pagamento único · acesso imediato</div>
         </div>
-
         <button class="v2-btn-buy" id="v2BuyBtn" type="button">
           Quero Meu Mapa Completo Agora
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5M9 4.5L13.5 9 9 13.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-
         <div class="v2-cta-trust">
-          <span>🔒 Pagamento 100% seguro</span>
-          <span>·</span>
-          <span>⚡ Acesso imediato</span>
-          <span>·</span>
-          <span>✓ Satisfação garantida</span>
+          <span>🔒 Seguro</span><span>·</span>
+          <span>⚡ Imediato</span><span>·</span>
+          <span>✓ Garantido</span>
         </div>
       </div>
-
       <div class="v2-nova-consulta-link">
-        <button class="v2-link-btn" id="v2FreeBtn" type="button">← Fazer nova consulta</button>
+        <button class="v2-link-btn" id="v2FreeBtn" type="button">← Nova consulta</button>
       </div>
-
     </div>
+
   </div>
 </div>
 
@@ -2630,55 +2712,72 @@
     33:{hook:'Você tem uma presença que cura — e raramente percebe o quanto isso te custa.',insight:'<p>O <strong>Caminho de Vida 33</strong> é o número mestre do amor e do serviço. Você não finge cuidar — você genuinamente cuida, e isso transforma os ambientes que você habita.</p><p>O desafio mais específico do 33 é a confusão entre amor e autossacrifício. Você oferece de um lugar de plenitude — e não percebe o momento exato em que a plenitude se transforma em obrigação e o cuidado genuíno se torna martírio.</p>',pattern:'<strong>Dar até o esgotamento sem pedir reposição.</strong> Você não percebe que está vazio até não ter mais nada para oferecer. E aí vem a culpa — por estar vazio, por ter esgotado, por precisar.',sabotage:'Confundir amor com autossacrifício. O amor que você oferece ao mundo começa no amor que você oferece a si mesmo — e esse é o trabalho mais difícil do 33.',taste:'Seu número de Alma revela o que você mais precisa receber — não apenas dar. Essa leitura muda como você entende suas relações mais próximas...'}
   };
 
+  /* ── Helpers gamificação ── */
+  function countUp(el,target,ms){
+    var start=Date.now(),from=0;
+    (function tick(){
+      var p=Math.min(1,(Date.now()-start)/ms);
+      el.textContent=Math.round(from+(target-from)*p);
+      if(p<1)requestAnimationFrame(tick);
+    })();
+  }
+  function typeIn(el,text,speed){
+    el.textContent='';var i=0;
+    (function t(){if(i<text.length){el.textContent+=text[i++];setTimeout(t,speed);}})();
+  }
+  function fadeIn(el,delay){
+    setTimeout(function(){
+      el.style.opacity='0';el.style.transition='opacity .6s ease';
+      requestAnimationFrame(function(){el.style.opacity='1';});
+    },delay);
+  }
+  function revealEl(el,delay){
+    setTimeout(function(){el&&el.classList.add('visible');},delay);
+  }
+  function showAch(icon,text,sub){
+    var slot=document.getElementById('v2AchSlot');if(!slot)return;
+    var d=document.createElement('div');
+    d.className='v2-ach';
+    d.innerHTML='<span class="v2-ach-icon">'+icon+'</span>'+
+      '<span class="v2-ach-text">'+text+'</span>'+
+      (sub?'<span class="v2-ach-sub">'+sub+'</span>':'');
+    slot.appendChild(d);
+    setTimeout(function(){d.classList.add('out');setTimeout(function(){d.remove();},400);},2600);
+  }
+  function hudUpdate(unlocked){
+    var el=document.getElementById('v2HudUnlocked');
+    var fill=document.getElementById('v2HudFill');
+    if(el)el.textContent=unlocked;
+    if(fill)fill.style.width=((unlocked/12)*100)+'%';
+  }
+
   function showTeaser(){
     var n=_nums,caminho=n.caminho,expressao=n.expressao,alma=n.alma,personalidade=n.personalidade;
     var aida=AIDA_HOOK[caminho]||{hook:'',insight:'',pattern:'',sabotage:'',taste:''};
     var titulo=TEASER_TITULO[caminho]||('Número '+caminho);
 
-    /* ── A — Attention ── */
-    document.getElementById('v2TeaserNum').textContent=caminho;
-    document.getElementById('v2TeaserTitle').textContent=titulo;
-    document.getElementById('v2TeaserHook').textContent=aida.hook;
-
-    /* ── I — Interest: insight como cards visuais ── */
-    var isMasterCV=(caminho===11||caminho===22||caminho===33);
-    var insightHTML=
-      '<div class="v2-insight-page">'+
-        '<div class="v2-insight-page-head">'+
-          '<div class="v2-insight-page-icon">◎</div>'+
-          '<div>'+
-            '<div class="v2-insight-page-label">Sua Frequência · Gratuito</div>'+
-            '<div class="v2-insight-page-title">Caminho de Vida '+(isMasterCV?'<em>'+caminho+'</em> (Número Mestre)':caminho)+'</div>'+
-          '</div>'+
-        '</div>'+
-        '<div class="v2-insight-page-body">'+aida.insight+'</div>'+
-      '</div>';
-    document.getElementById('v2FreeInsight').innerHTML=insightHTML;
-
+    /* ── Popular conteúdo ── */
+    document.getElementById('v2FreeInsight').innerHTML=aida.insight;
     document.getElementById('v2PatternText').innerHTML=aida.pattern;
     document.getElementById('v2SabotageText').innerHTML=aida.sabotage;
 
-    /* ── D — Desire: números reais bloqueados ── */
-    document.getElementById('v2MoreNums').textContent='11';
-
-    /* Preview texts blurred inside locked cards */
-    var PREVIEW_TEXT={
-      expressao:'A leitura completa do seu número de Expressão revela como sua missão se manifesta no plano concreto — seu talento natural, sua autoridade e onde você tende a trair sua própria capacidade.',
-      alma:'O número de Alma desvela o que você mais precisa sentir para se mover de verdade — não o que você mostra, mas o que te move internamente quando ninguém está olhando.',
-      personalidade:'O número de Personalidade revela como o mundo te lê antes de te conhecer — a impressão que você gera e o que ela abre ou fecha para você sem que você perceba.'
+    /* Locked cards */
+    var PREVIEW={
+      expressao:'A leitura do número de Expressão revela como sua missão se manifesta — seu talento natural, sua autoridade e onde você tende a trair sua própria capacidade.',
+      alma:'O número de Alma revela o que você mais precisa sentir para se mover de verdade — não o que você mostra, mas o que te move internamente.',
+      personalidade:'O número de Personalidade revela como o mundo te lê antes de te conhecer — a impressão que você gera e o que ela abre ou fecha para você.'
     };
-
     var lockedCards=[
-      {label:'Expressão',num:expressao,title:TEASER_TITULO[expressao]||'',preview:PREVIEW_TEXT.expressao},
-      {label:'Alma',num:alma,title:TEASER_TITULO[alma]||'',preview:PREVIEW_TEXT.alma},
-      {label:'Personalidade',num:personalidade,title:TEASER_TITULO[personalidade]||'',preview:PREVIEW_TEXT.personalidade}
+      {label:'Expressão',num:expressao,title:TEASER_TITULO[expressao]||'',preview:PREVIEW.expressao},
+      {label:'Alma',num:alma,title:TEASER_TITULO[alma]||'',preview:PREVIEW.alma},
+      {label:'Personalidade',num:personalidade,title:TEASER_TITULO[personalidade]||'',preview:PREVIEW.personalidade}
     ];
     document.getElementById('v2LockedCards').innerHTML=lockedCards.map(function(lc){
-      var isMaster=(lc.num===11||lc.num===22||lc.num===33);
+      var im=(lc.num===11||lc.num===22||lc.num===33);
       return '<div class="v2-locked-card">'+
         '<div class="v2-locked-card-head">'+
           '<div class="v2-locked-card-info">'+
-            '<div class="v2-locked-card-label">'+lc.label+(isMaster?' · Número Mestre':'')+'</div>'+
+            '<div class="v2-locked-card-label">'+lc.label+(im?' · Mestre':'')+'</div>'+
             '<div class="v2-locked-card-row">'+
               '<div class="v2-locked-card-num">'+lc.num+'</div>'+
               '<div class="v2-locked-card-name">'+lc.title+'</div>'+
@@ -2694,24 +2793,19 @@
     }).join('');
 
     var advNums=[
-      {name:'1º Pináculo',num:n.caminho>0?((caminho%9)||9):'–'},
-      {name:'Desafio Principal',num:n.expressao>0?((expressao%4)||1):'–'},
-      {name:'Lição Kármica',num:'?'},
-      {name:'Nº de Maturidade',num:'?'},
-      {name:'Ciclo Formativo',num:'?'},
-      {name:'Nº de Equilíbrio',num:'?'},
-      {name:'Plano de Ação',num:'✦'},
-      {name:'Direcionamento',num:'✦'}
+      {name:'1º Pináculo'},{name:'Desafio Principal'},
+      {name:'Lições Kármicas'},{name:'Nº de Maturidade'},
+      {name:'Ciclo Formativo'},{name:'Nº de Equilíbrio'},
+      {name:'Plano de Ação'},{name:'Direcionamento'}
     ];
     document.getElementById('v2AdvGrid').innerHTML=advNums.map(function(it){
       return '<div class="v2-adv-item">'+
         '<span class="v2-adv-item-lock">🔒</span>'+
         '<span class="v2-adv-item-name">'+it.name+'</span>'+
-        '<span class="v2-adv-item-num">'+it.num+'</span>'+
       '</div>';
     }).join('');
 
-    /* ── Taste box ── */
+    /* Taste box */
     var tasteLines={
       1:'Parar de pedir permissão para ser quem você é. Começar a inaugurar sem esperar o cenário perfeito. Manter...',
       2:'Parar de dizer "tudo bem" quando não está. Começar a verbalizar o que precisa antes de acumular. Manter...',
@@ -2728,80 +2822,111 @@
     };
     var tasteLine=tasteLines[caminho]||'Parar de... Começar... Manter...';
     document.getElementById('v2TasteBox').innerHTML=
-      '<div class="v2-taste-kicker">Gostinho do Plano de Ação · Caminho '+caminho+'</div>'+
+      '<div class="v2-taste-kicker">◈ Gostinho do Plano de Ação · Caminho '+caminho+'</div>'+
       '<div class="v2-taste-quote">&#8220;'+tasteLine+'&#8221;</div>'+
       '<div class="v2-taste-blur"></div>';
 
+    /* Mostra tela e dispara sequência */
     showScreen('v2Teaser');
-
-    /* Scroll to top + iniciar scroll-reveal */
+    hudUpdate(0);
     var teaserEl=document.getElementById('v2Teaser');
-    if(teaserEl){teaserEl.scrollTop=0;}
-    setTimeout(initTeaserReveal,120);
+    if(teaserEl)teaserEl.scrollTop=0;
 
-    /* Buy button → map */
+    /* Buttons */
     var buyBtn=document.getElementById('v2BuyBtn');
-    if(buyBtn){buyBtn.onclick=function(){showMap();};}
-    /* Nova consulta → hero */
+    if(buyBtn)buyBtn.onclick=function(){showMap();};
     var freeBtn=document.getElementById('v2FreeBtn');
-    if(freeBtn){freeBtn.onclick=function(){showScreen('v2Hero');};}
+    if(freeBtn)freeBtn.onclick=function(){showScreen('v2Hero');};
+
+    /* Sequência gamificada */
+    setTimeout(function(){playTeaserSequence(caminho,titulo);},200);
   }
 
-  function initTeaserReveal(){
+  function playTeaserSequence(caminho,titulo){
+    var reveal=document.getElementById('v2PhaseReveal');
+    var numEl=document.getElementById('v2TeaserNum');
+    var titleEl=document.getElementById('v2TeaserTitle');
+    var hookEl=document.getElementById('v2TeaserHook');
     var teaser=document.getElementById('v2Teaser');
-    if(!teaser)return;
 
-    /* Scroll-reveal via IntersectionObserver no container scrollável */
-    var srEls=teaser.querySelectorAll('.v2-sr');
-    srEls.forEach(function(el){el.classList.remove('visible');});
+    /* Reset todos os elementos animáveis */
+    [document.getElementById('v2CardInsight'),
+     document.getElementById('v2CardPattern'),
+     document.getElementById('v2CardSabotage'),
+     document.getElementById('v2MapDivider'),
+     document.getElementById('v2LockedCards'),
+     document.getElementById('v2AdvancedTeaser'),
+     document.getElementById('v2TasteBox'),
+     document.getElementById('v2StepSec3')
+    ].forEach(function(el){if(el){el.classList.remove('visible');}});
 
-    var obs=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){e.target.classList.add('visible');}
-      });
-    },{root:teaser,threshold:0.08,rootMargin:'0px 0px -20px 0px'});
+    /* T=0: reveal hero aparece */
+    reveal.style.opacity='0';reveal.style.transition='opacity .5s ease';
+    setTimeout(function(){reveal.style.opacity='1';},100);
 
-    srEls.forEach(function(el){obs.observe(el);});
+    /* T=300ms: número conta para cima */
+    setTimeout(function(){
+      countUp(numEl,caminho,700);
+    },300);
 
-    /* Primeiro bloco visível imediatamente */
-    var first=teaser.querySelector('.v2-sr');
-    if(first)setTimeout(function(){first.classList.add('visible');},80);
+    /* T=1100ms: nome digita */
+    setTimeout(function(){
+      typeIn(titleEl,titulo,55);
+    },1100);
 
-    /* Step nav: atualiza tab ativa conforme scroll */
-    var sections=[
-      document.getElementById('v2StepSec0'),
-      document.getElementById('v2StepSec1'),
-      document.getElementById('v2StepSec2'),
-      document.getElementById('v2StepSec3')
-    ];
-    var stepItems=teaser.querySelectorAll('.v2-step-item');
+    /* T=1800ms: hook aparece */
+    setTimeout(function(){
+      hookEl.style.opacity='0';hookEl.style.transition='opacity .7s ease';
+      requestAnimationFrame(function(){hookEl.style.opacity='1';});
+      hudUpdate(1);
+    },1800);
 
-    function setActiveStep(idx){
-      stepItems.forEach(function(s,i){
-        s.classList.toggle('active',i===idx);
-        s.classList.toggle('done',i<idx);
-      });
-    }
+    /* T=2500ms: achievement + card frequência */
+    setTimeout(function(){
+      showAch('✓','Frequência identificada','Caminho de Vida '+caminho);
+      revealEl(document.getElementById('v2CardInsight'),100);
+      if(teaser)teaser.scrollBy({top:200,behavior:'smooth'});
+      hudUpdate(2);
+    },2500);
 
-    var stepObs=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){
-          var idx=sections.indexOf(e.target);
-          if(idx>=0)setActiveStep(idx);
-        }
-      });
-    },{root:teaser,threshold:0.3});
+    /* T=4500ms: achievement + padrão */
+    setTimeout(function(){
+      showAch('⚡','Padrão principal detectado','');
+      revealEl(document.getElementById('v2CardPattern'),100);
+      if(teaser)teaser.scrollBy({top:260,behavior:'smooth'});
+      hudUpdate(3);
+    },4500);
 
-    sections.forEach(function(s){if(s)stepObs.observe(s);});
+    /* T=6500ms: achievement + sabotagem */
+    setTimeout(function(){
+      showAch('↺','Ciclo de sabotagem mapeado','');
+      revealEl(document.getElementById('v2CardSabotage'),100);
+      if(teaser)teaser.scrollBy({top:260,behavior:'smooth'});
+      hudUpdate(3);
+    },6500);
 
-    /* Clique nas tabs faz scroll suave até a seção */
-    stepItems.forEach(function(item){
-      item.addEventListener('click',function(){
-        var idx=parseInt(item.getAttribute('data-step'));
-        var sec=sections[idx];
-        if(sec)sec.scrollIntoView({behavior:'smooth',block:'start'});
-      });
-    });
+    /* T=8500ms: mapa calculado + locked cards */
+    setTimeout(function(){
+      showAch('🗺️','Mapa numerológico calculado','9 análises aguardando');
+      revealEl(document.getElementById('v2MapDivider'),100);
+      revealEl(document.getElementById('v2LockedCards'),500);
+      if(teaser)teaser.scrollBy({top:300,behavior:'smooth'});
+      hudUpdate(3);
+    },8500);
+
+    /* T=10000ms: grid avançado */
+    setTimeout(function(){
+      revealEl(document.getElementById('v2AdvancedTeaser'),100);
+      if(teaser)teaser.scrollBy({top:280,behavior:'smooth'});
+    },10000);
+
+    /* T=11200ms: taste + CTA */
+    setTimeout(function(){
+      revealEl(document.getElementById('v2TasteBox'),100);
+      revealEl(document.getElementById('v2StepSec3'),400);
+      if(teaser)teaser.scrollBy({top:300,behavior:'smooth'});
+      setTimeout(function(){showAch('🔓','Pronto para desbloquear','Acesso imediato');},600);
+    },11200);
   }
 
   function showMap(){buildMap();showScreen('v2Map');}
